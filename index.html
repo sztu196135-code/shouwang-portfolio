@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light" class=""><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>冯文举 · AIGC全链路视觉创作者 | 作品集</title>
+<meta name="description" content="冯文举 · super守望 · AIGC全链路视觉创作者：AI视频生成、AI电商视觉、ComfyUI工作流、IP全案设计">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#060d0b;
+  --bg2:#0a1613;
+  --card:rgba(255,255,255,.035);
+  --card-hover:rgba(255,255,255,.06);
+  --border:rgba(255,255,255,.08);
+  --border-hover:rgba(45,212,191,.35);
+  --accent:#2dd4bf;
+  --accent2:#34d399;
+  --accent-dark:#0d9488;
+  --grad:linear-gradient(135deg,#2dd4bf,#34d399);
+  --text:#eef7f4;
+  --text-dim:#8aa39b;
+  --text-faint:#5c736c;
+  --radius:16px;
+  --nav-h:72px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',-apple-system,BlinkMacSystemFont,sans-serif;
+  font-size:16px;line-height:1.7;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:rgba(45,212,191,.3);color:#fff}
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:#1c352f;border-radius:5px}
+::-webkit-scrollbar-thumb:hover{background:#28524a}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.container{max-width:1200px;margin:0 auto;padding:0 32px}
+
+/* ===== 导航栏 ===== */
+.navbar{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  height:var(--nav-h);
+  display:flex;align-items:center;
+  transition:all .4s ease;
+}
+.navbar.scrolled{
+  background:rgba(6,13,11,.82);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
+}
+.nav-inner{
+  max-width:1200px;margin:0 auto;padding:0 32px;
+  width:100%;display:flex;align-items:center;justify-content:space-between;
+}
+.logo{display:flex;align-items:baseline;gap:10px;cursor:pointer}
+.logo-main{
+  font-size:26px;font-weight:900;letter-spacing:1px;
+  background:var(--grad);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.logo-sub{font-size:12px;color:var(--text-dim);letter-spacing:2px;text-transform:uppercase}
+.nav-menu{display:flex;align-items:center;gap:6px;list-style:none}
+.nav-menu a{
+  padding:8px 16px;font-size:14.5px;color:var(--text-dim);
+  border-radius:8px;transition:all .3s;position:relative;
+}
+.nav-menu a:hover,.nav-menu a.active{color:var(--text);background:rgba(255,255,255,.05)}
+.nav-menu a.active{color:var(--accent)}
+.nav-cta{
+  margin-left:14px;padding:9px 22px;border-radius:10px;
+  background:var(--grad);color:#03211b;font-weight:700;font-size:14.5px;
+  box-shadow:0 4px 20px rgba(45,212,191,.25);
+  transition:all .3s;cursor:pointer;border:none;
+}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(45,212,191,.4)}
+.menu-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px}
+.menu-toggle span{width:24px;height:2px;background:var(--text);border-radius:2px;transition:all .3s}
+
+/* ===== Hero ===== */
+.hero{
+  position:relative;min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;overflow:hidden;
+}
+#starfield{position:absolute;inset:0;z-index:0}
+.hero-glow{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:900px;height:600px;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(45,212,191,.08),transparent 65%);
+  z-index:0;pointer-events:none;
+}
+.hero-content{position:relative;z-index:2;padding:120px 24px 80px;max-width:900px}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:13px;letter-spacing:4px;color:var(--accent);
+  text-transform:uppercase;font-weight:500;
+  padding:10px 24px;border:1px solid rgba(45,212,191,.25);
+  border-radius:999px;background:rgba(45,212,191,.05);
+  backdrop-filter:blur(6px);
+  opacity:0;animation:fadeUp .9s ease .1s forwards;
+}
+.hero-badge svg{width:14px;height:14px;flex-shrink:0}
+.hero-name{
+  font-size:clamp(56px,10vw,110px);font-weight:900;
+  letter-spacing:6px;margin:36px 0 20px;line-height:1.15;
+  opacity:0;animation:fadeUp .9s ease .3s forwards;
+  text-shadow:0 0 60px rgba(45,212,191,.15);
+}
+.hero-title{
+  font-size:clamp(16px,2.2vw,21px);color:var(--text-dim);font-weight:400;
+  letter-spacing:2px;margin-bottom:44px;
+  opacity:0;animation:fadeUp .9s ease .5s forwards;
+}
+.hero-divider{
+  width:120px;height:2px;margin:0 auto 44px;border-radius:2px;
+  background:linear-gradient(90deg,transparent,var(--accent),transparent);
+  opacity:0;animation:fadeUp .9s ease .65s forwards;
+}
+.hero-tags{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:14px;
+  opacity:0;animation:fadeUp .9s ease .8s forwards;
+}
+.hero-tags span{
+  padding:9px 24px;border-radius:999px;font-size:14.5px;color:var(--text-dim);
+  border:1px solid var(--border);background:rgba(255,255,255,.03);
+  backdrop-filter:blur(6px);transition:all .3s;
+}
+.hero-tags span:hover{border-color:var(--border-hover);color:var(--accent);transform:translateY(-2px)}
+.scroll-hint{
+  position:absolute;bottom:36px;left:50%;transform:translateX(-50%);z-index:2;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  color:var(--text-faint);font-size:11px;letter-spacing:4px;
+  opacity:0;animation:fadeUp 1s ease 1.3s forwards;
+}
+.scroll-arrow{width:18px;height:18px;border-left:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(-45deg);animation:arrowDown 1.8s infinite}
+@keyframes arrowDown{0%,100%{transform:rotate(-45deg) translate(0,0);opacity:1}50%{transform:rotate(-45deg) translate(6px,6px);opacity:.4}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+
+/* ===== 区块通用 ===== */
+.section{padding:110px 0;position:relative}
+.section-head{text-align:center;margin-bottom:64px}
+.section-en{
+  font-size:13px;letter-spacing:6px;color:var(--accent);
+  text-transform:uppercase;font-weight:500;margin-bottom:14px;
+}
+.section-title{font-size:clamp(30px,4.5vw,44px);font-weight:900;letter-spacing:2px}
+.section-line{
+  width:56px;height:3px;border-radius:3px;background:var(--grad);
+  margin:20px auto 0;box-shadow:0 0 16px rgba(45,212,191,.5);
+}
+
+/* ===== 关于我 ===== */
+.about-intro{
+  text-align:center;max-width:760px;margin:0 auto 60px;
+}
+.about-name{font-size:26px;font-weight:700;margin-bottom:8px}
+.about-role{color:var(--accent);font-size:15.5px;letter-spacing:1px;margin-bottom:22px}
+.about-desc{color:var(--text-dim);font-size:15.5px}
+.about-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.about-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:30px 24px;
+  transition:all .4s ease;position:relative;overflow:hidden;
+}
+.about-card::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:var(--grad);opacity:0;transition:opacity .4s;
+}
+.about-card:hover{transform:translateY(-6px);background:var(--card-hover);border-color:var(--border-hover);box-shadow:0 20px 44px rgba(0,0,0,.35)}
+.about-card:hover::after{opacity:1}
+.about-icon{
+  width:52px;height:52px;border-radius:14px;
+  background:linear-gradient(135deg,rgba(45,212,191,.18),rgba(52,211,153,.1));
+  border:1px solid rgba(45,212,191,.25);
+  display:flex;align-items:center;justify-content:center;margin-bottom:20px;
+}
+.about-icon svg{width:24px;height:24px;stroke:var(--accent)}
+.about-num{font-size:13px;color:var(--text-faint);letter-spacing:2px;margin-bottom:8px;font-weight:500}
+.about-card h3{font-size:18px;font-weight:700;margin-bottom:12px;letter-spacing:.5px}
+.about-card p{font-size:13.5px;color:var(--text-dim);line-height:1.75}
+
+/* ===== 作品展示 ===== */
+.filter-bar{
+  display:flex;justify-content:center;flex-wrap:wrap;gap:12px;
+  margin-bottom:48px;
+}
+.filter-btn{
+  padding:10px 22px;border-radius:999px;font-size:14px;
+  background:transparent;color:var(--text-dim);
+  border:1px solid var(--border);cursor:pointer;
+  transition:all .35s;font-family:inherit;
+  display:flex;align-items:center;gap:8px;
+}
+.filter-btn em{font-style:normal;font-size:11px;opacity:.65;letter-spacing:1px;text-transform:uppercase}
+.filter-btn:hover{border-color:var(--border-hover);color:var(--text)}
+.filter-btn.active{
+  background:var(--grad);border-color:transparent;color:#03211b;font-weight:700;
+  box-shadow:0 4px 22px rgba(45,212,191,.3);
+}
+.filter-btn.active em{opacity:.8}
+.work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.work-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);overflow:hidden;cursor:pointer;
+  transition:all .45s cubic-bezier(.4,0,.2,1);
+  display:flex;flex-direction:column;
+}
+.work-card:hover{transform:translateY(-8px);border-color:var(--border-hover);box-shadow:0 24px 54px rgba(0,0,0,.45);background:var(--card-hover)}
+.work-thumb{position:relative;aspect-ratio:4/3;overflow:hidden;background:#0c1a16}
+.work-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.4,0,.2,1)}
+.work-card:hover .work-thumb img{transform:scale(1.06)}
+.work-play{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(.85);
+  width:58px;height:58px;border-radius:50%;
+  background:rgba(6,13,11,.55);backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.3);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transition:all .4s;
+}
+.work-play::after{
+  content:'';width:0;height:0;margin-left:4px;
+  border-left:16px solid #fff;border-top:10px solid transparent;border-bottom:10px solid transparent;
+}
+.work-card:hover .work-play{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.work-cat-badge{
+  position:absolute;top:14px;left:14px;
+  padding:5px 13px;border-radius:999px;font-size:11.5px;
+  background:rgba(6,13,11,.72);backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.16);color:var(--accent);
+  letter-spacing:1px;
+}
+.work-info{padding:22px 22px 24px;flex:1;display:flex;flex-direction:column}
+.work-meta{display:flex;align-items:baseline;gap:12px;margin-bottom:10px}
+.work-num{
+  font-size:30px;font-weight:900;line-height:1;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;opacity:.9;
+}
+.work-info h3{font-size:17.5px;font-weight:700;letter-spacing:.3px;line-height:1.4}
+.work-info p{
+  font-size:13.5px;color:var(--text-dim);margin-top:10px;line-height:1.75;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  min-height:47px;
+}
+.work-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:16px}
+.work-tags span{
+  font-size:11.5px;color:var(--text-faint);
+  padding:4px 11px;border-radius:6px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);
+}
+.work-card.hide{display:none}
+.work-card.enter{animation:cardIn .5s ease both}
+@keyframes cardIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+/* ===== 技能 ===== */
+.skills-wrap{max-width:860px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+.skill-item{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:26px 30px;
+  transition:all .4s;
+}
+.skill-item:hover{background:var(--card-hover);border-color:var(--border-hover)}
+.skill-top{display:flex;align-items:flex-start;gap:18px}
+.skill-icon{
+  font-size:26px;width:52px;height:52px;flex-shrink:0;
+  border-radius:14px;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,rgba(45,212,191,.16),rgba(52,211,153,.08));
+  border:1px solid rgba(45,212,191,.22);
+}
+.skill-body{flex:1}
+.skill-title-row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+.skill-title-row h3{font-size:17.5px;font-weight:700;letter-spacing:.3px}
+.skill-pct{
+  font-size:24px;font-weight:900;font-variant-numeric:tabular-nums;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.skill-item p{font-size:13.5px;color:var(--text-dim);margin-top:6px}
+.skill-bar{margin-top:18px;height:5px;border-radius:999px;background:rgba(255,255,255,.07);overflow:hidden}
+.skill-fill{
+  height:100%;width:0;border-radius:999px;
+  background:linear-gradient(90deg,#0d9488,#2dd4bf,#34d399);
+  box-shadow:0 0 14px rgba(45,212,191,.55);
+  transition:width 1.4s cubic-bezier(.25,.8,.3,1);
+}
+
+/* ===== 联系 ===== */
+.contact-desc{text-align:center;max-width:620px;margin:-28px auto 56px;color:var(--text-dim);font-size:15.5px}
+.contact-desc strong{color:var(--accent);font-weight:500}
+.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-bottom:44px}
+.contact-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:36px 24px;text-align:center;
+  transition:all .4s;
+}
+.contact-card:hover{transform:translateY(-6px);border-color:var(--border-hover);background:var(--card-hover);box-shadow:0 18px 40px rgba(0,0,0,.35)}
+.contact-icon{
+  width:58px;height:58px;border-radius:50%;margin:0 auto 18px;
+  background:var(--grad);display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 22px rgba(45,212,191,.3);
+}
+.contact-icon svg{width:24px;height:24px;stroke:#03211b}
+.contact-label{font-size:13px;color:var(--text-dim);letter-spacing:1px;margin-bottom:8px}
+.contact-value{font-size:17px;font-weight:700;letter-spacing:.5px;word-break:break-all}
+.contact-cta{
+  display:flex;justify-content:center;
+}
+.contact-cta a{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:15px 44px;border-radius:12px;
+  background:var(--grad);color:#03211b;font-weight:700;font-size:15.5px;
+  box-shadow:0 8px 30px rgba(45,212,191,.3);
+  transition:all .35s;letter-spacing:1px;
+}
+.contact-cta a:hover{transform:translateY(-3px);box-shadow:0 14px 42px rgba(45,212,191,.45)}
+
+/* ===== 页脚 ===== */
+.footer{
+  border-top:1px solid var(--border);
+  padding:44px 0 40px;text-align:center;
+  background:rgba(255,255,255,.012);
+}
+.footer-slogan{font-size:14px;color:var(--text-dim);letter-spacing:1px;margin-bottom:18px}
+.footer-slogan b{color:var(--accent);font-weight:500}
+.footer-copy{font-size:12.5px;color:var(--text-faint);letter-spacing:1px}
+
+/* ===== 详情模态框 ===== */
+.modal-mask{
+  position:fixed;inset:0;z-index:200;
+  background:rgba(3,8,7,.82);backdrop-filter:blur(10px);
+  display:none;align-items:flex-start;justify-content:center;
+  padding:44px 20px;overflow-y:auto;
+}
+.modal-mask.open{display:flex;animation:maskIn .3s ease}
+@keyframes maskIn{from{opacity:0}to{opacity:1}}
+.modal{
+  width:100%;max-width:1080px;
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:20px;overflow:hidden;position:relative;
+  animation:modalIn .45s cubic-bezier(.3,1,.4,1);
+  box-shadow:0 40px 120px rgba(0,0,0,.6);
+}
+@keyframes modalIn{from{opacity:0;transform:translateY(40px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+.modal-close{
+  position:absolute;top:16px;right:16px;z-index:5;
+  width:42px;height:42px;border-radius:50%;
+  background:rgba(6,13,11,.7);backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.18);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .3s;
+}
+.modal-close:hover{background:rgba(45,212,191,.25);transform:rotate(90deg)}
+.modal-close svg{width:18px;height:18px;stroke:#fff}
+.modal-media{position:relative;background:#04100d;max-height:560px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.modal-media img{width:100%;height:100%;max-height:560px;object-fit:contain}
+.modal-media video{width:100%;max-height:560px;display:block;background:#000;outline:none}
+.video-tip{
+  position:absolute;bottom:14px;left:50%;transform:translateX(-50%);
+  font-size:11.5px;color:rgba(255,255,255,.6);letter-spacing:1px;
+  background:rgba(6,13,11,.6);backdrop-filter:blur(6px);
+  padding:5px 14px;border-radius:999px;pointer-events:none;
+}
+.modal-body{padding:40px 44px 48px}
+.modal-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.modal-cat{
+  padding:5px 15px;border-radius:999px;font-size:12px;letter-spacing:1px;
+  background:rgba(45,212,191,.12);border:1px solid rgba(45,212,191,.3);color:var(--accent);
+}
+.modal-num{font-size:15px;color:var(--text-faint);font-weight:500;letter-spacing:2px}
+.modal-body h2{font-size:clamp(24px,3.4vw,32px);font-weight:900;letter-spacing:1px;line-height:1.35;margin-bottom:8px}
+.modal-spec{font-size:14px;color:var(--accent);letter-spacing:.5px;margin-bottom:32px}
+.modal-points{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:40px}
+.point{
+  background:rgba(255,255,255,.028);border:1px solid rgba(255,255,255,.06);
+  border-radius:14px;padding:22px 24px;
+}
+.point-label{
+  display:flex;align-items:center;gap:9px;
+  font-size:12.5px;color:var(--accent);letter-spacing:2px;
+  font-weight:700;margin-bottom:10px;text-transform:uppercase;
+}
+.point-label svg{width:15px;height:15px;stroke:var(--accent);flex-shrink:0}
+.point p{font-size:13.8px;color:var(--text-dim);line-height:1.85}
+.modal-gallery-title{
+  font-size:14px;color:var(--text-faint);letter-spacing:3px;
+  text-transform:uppercase;margin-bottom:20px;
+  display:flex;align-items:center;gap:14px;
+}
+.modal-gallery-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.masonry{columns:3;column-gap:16px}
+.masonry img{
+  width:100%;margin-bottom:16px;border-radius:12px;
+  border:1px solid rgba(255,255,255,.06);
+  transition:all .35s;
+}
+.masonry img:hover{transform:scale(1.015);border-color:var(--border-hover);box-shadow:0 14px 34px rgba(0,0,0,.4)}
+
+/* ===== 滚动渐显 ===== */
+.reveal{opacity:0;transform:translateY(30px);filter:blur(6px);transition:all .9s cubic-bezier(.25,.8,.3,1)}
+.reveal.in{opacity:1;transform:translateY(0);filter:blur(0)}
+
+/* ===== 响应式 ===== */
+@media (max-width:1024px){
+  .about-grid{grid-template-columns:repeat(2,1fr)}
+  .work-grid{grid-template-columns:repeat(2,1fr)}
+  .modal-points{grid-template-columns:1fr}
+  .masonry{columns:2}
+}
+@media (max-width:680px){
+  .container{padding:0 20px}
+  .nav-inner{padding:0 20px}
+  .nav-menu{
+    position:fixed;top:var(--nav-h);left:0;right:0;
+    flex-direction:column;align-items:stretch;gap:2px;
+    background:rgba(6,13,11,.96);backdrop-filter:blur(20px);
+    padding:14px 20px 22px;border-bottom:1px solid var(--border);
+    transform:translateY(-130%);transition:transform .4s ease;
+  }
+  .nav-menu.open{transform:translateY(0)}
+  .nav-menu a{padding:13px 16px;font-size:15px}
+  .nav-cta{margin:10px 0 0;text-align:center}
+  .menu-toggle{display:flex}
+  .section{padding:80px 0}
+  .about-grid{grid-template-columns:1fr}
+  .work-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .modal-body{padding:28px 22px 36px}
+  .masonry{columns:1}
+  .hero-tags span{font-size:13px;padding:8px 16px}
+}
+</style>
+</head>
+<body>
+
+<!-- 导航栏 -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <div class="logo" onclick="scrollToId('home')">
+      <span class="logo-main">F.W.J</span>
+      <span class="logo-sub">AIGC Creator</span>
+    </div>
+    <ul class="nav-menu" id="navMenu">
+      <li><a href="#home" class="">首页</a></li>
+      <li><a href="#about" class="">关于我</a></li>
+      <li><a href="#portfolio" class="active">作品集</a></li>
+      <li><a href="#skills">技能</a></li>
+      <li><a href="#contact">联系我</a></li>
+      <li><button class="nav-cta" onclick="scrollToId('contact')">合作咨询</button></li>
+    </ul>
+    <button class="menu-toggle" id="menuToggle" aria-label="菜单">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="home">
+  <canvas id="starfield" width="600" height="300"></canvas>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+      AIGC VISUAL CREATOR&nbsp;&nbsp;|&nbsp;&nbsp;AI CONTENT DIRECTOR
+    </div>
+    <h1 class="hero-name">冯文举</h1>
+    <p class="hero-title">AIGC 全链路视觉创作者 · 电商视觉 / AI 视频 / 原创 IP</p>
+    <div class="hero-divider"></div>
+    <div class="hero-tags">
+      <span>AI 视频生成</span>
+      <span>AI 电商视觉</span>
+      <span>ComfyUI 工作流</span>
+      <span>IP 全案设计</span>
+    </div>
+  </div>
+  <div class="scroll-hint">SCROLL<span class="scroll-arrow"></span></div>
+</section>
+
+<!-- 关于我 -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-en">About Me</div>
+      <h2 class="section-title">关于我</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="about-intro reveal">
+      <div class="about-name">冯文举 · super 守望</div>
+      <div class="about-role">AIGC 全链路视觉创作者 · 深圳</div>
+      <p class="about-desc">专注 AIGC 全链路视觉创作，独立完成电商视觉、AI 视频与原创 IP 三类作品，覆盖从需求拆解、视觉策略、AI 生成到精修交付的完整链路。擅长将 AI 工具与商业视觉需求结合，用可复用的工作流沉淀方法论，输出可落地的创意内容。</p>
+    </div>
+    <div class="about-grid">
+      <div class="about-card reveal">
+        <div class="about-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+        </div>
+        <div class="about-num">01</div>
+        <h3>电商视觉设计</h3>
+        <p>AI 电商详情页、主图、产品视频全案设计，涵盖 3C 数码、家居、宠物等跨境与国内品类</p>
+      </div>
+      <div class="about-card reveal">
+        <div class="about-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2"></rect></svg>
+        </div>
+        <div class="about-num">02</div>
+        <h3>AI 视频设计</h3>
+        <p>品牌 TVC 广告、电影短片、动作 CG、AI 漫剧，从分镜导演到成片的全链路创作</p>
+      </div>
+      <div class="about-card reveal">
+        <div class="about-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 1.9 5.8a2 2 0 0 0 1.3 1.3L21 12l-5.8 1.9a2 2 0 0 0-1.3 1.3L12 21l-1.9-5.8a2 2 0 0 0-1.3-1.3L3 12l5.8-1.9a2 2 0 0 0 1.3-1.3z"></path></svg>
+        </div>
+        <div class="about-num">03</div>
+        <h3>IP 形象全案设计</h3>
+        <p>原创 IP 从 0 到 1 打造，角色设定、三视图、表情包到文创周边的完整延展体系</p>
+      </div>
+      <div class="about-card reveal">
+        <div class="about-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5"></circle><circle cx="17.5" cy="10.5" r=".5"></circle><circle cx="8.5" cy="7.5" r=".5"></circle><circle cx="6.5" cy="12.5" r=".5"></circle><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path></svg>
+        </div>
+        <div class="about-num">04</div>
+        <h3>其它设计</h3>
+        <p>ComfyUI 自动化工作流搭建、商业海报、平面视觉与创意延展设计</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 作品展示 -->
+<section class="section" id="portfolio" style="background:rgba(255,255,255,.012)">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-en">Portfolio</div>
+      <h2 class="section-title">作品展示</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="filter-bar reveal" id="filterBar">
+      <button class="filter-btn active" data-filter="all">全部 <em>All</em></button>
+      <button class="filter-btn" data-filter="ecom">电商视觉设计 <em>Ecommerce</em></button>
+      <button class="filter-btn" data-filter="video">AI视频设计 <em>AI Video</em></button>
+      <button class="filter-btn" data-filter="ip">IP形象全案设计 <em>IP Design</em></button>
+      <button class="filter-btn" data-filter="other">其它设计 <em>Other</em></button>
+    </div>
+    <div class="work-grid" id="workGrid"></div>
+  </div>
+</section>
+
+<!-- 技能 -->
+<section class="section" id="skills">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-en">Skills</div>
+      <h2 class="section-title">技能专长</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-wrap">
+      <div class="skill-item reveal" data-pct="95">
+        <div class="skill-top">
+          <div class="skill-icon">🎬</div>
+          <div class="skill-body">
+            <div class="skill-title-row">
+              <h3>AI 视频生成与分镜设计</h3>
+              <span class="skill-pct">95%</span>
+            </div>
+            <p>Seedance / 即梦 / 可灵跨工具协同 + 分镜脚本、运镜调度、资产锁定的导演全流程</p>
+            <div class="skill-bar"><div class="skill-fill"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="skill-item reveal" data-pct="92">
+        <div class="skill-top">
+          <div class="skill-icon">⚡</div>
+          <div class="skill-body">
+            <div class="skill-title-row">
+              <h3>ComfyUI 工作流搭建</h3>
+              <span class="skill-pct">92%</span>
+            </div>
+            <p>Flux.1 文生图、产品融图、换装、海报排版、线稿上色等标准化节点流水线</p>
+            <div class="skill-bar"><div class="skill-fill"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="skill-item reveal" data-pct="90">
+        <div class="skill-top">
+          <div class="skill-icon">🛒</div>
+          <div class="skill-body">
+            <div class="skill-title-row">
+              <h3>AI 电商视觉全案</h3>
+              <span class="skill-pct">90%</span>
+            </div>
+            <p>AI 生成 + 产品精修工作流，跨境电商详情页与主图的全案设计</p>
+            <div class="skill-bar"><div class="skill-fill"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="skill-item reveal" data-pct="88">
+        <div class="skill-top">
+          <div class="skill-icon">✨</div>
+          <div class="skill-body">
+            <div class="skill-title-row">
+              <h3>3D 角色与 IP 设计</h3>
+              <span class="skill-pct">88%</span>
+            </div>
+            <p>概念设定 · 3D 渲染 · 周边衍生 · IP 世界观构建的完整链路</p>
+            <div class="skill-bar"><div class="skill-fill"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="skill-item reveal" data-pct="85">
+        <div class="skill-top">
+          <div class="skill-icon">🎨</div>
+          <div class="skill-body">
+            <div class="skill-title-row">
+              <h3>平面设计与商业海报</h3>
+              <span class="skill-pct">85%</span>
+            </div>
+            <p>品牌海报、产品 KV、封面包装等平面视觉创作与排版</p>
+            <div class="skill-bar"><div class="skill-fill"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 联系 -->
+<section class="section" id="contact" style="background:rgba(255,255,255,.012)">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-en">Contact</div>
+      <h2 class="section-title">联系我</h2>
+      <div class="section-line"></div>
+    </div>
+    <p class="contact-desc reveal">欢迎交流 AI 视觉创作、影视广告合作、工作流技术咨询。<br><strong>期待与你共创下一个项目。</strong></p>
+    <div class="contact-grid">
+      <div class="contact-card reveal">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        </div>
+        <div class="contact-label">电话 / 微信</div>
+        <div class="contact-value">130 0548 1848</div>
+      </div>
+      <div class="contact-card reveal">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+        </div>
+        <div class="contact-label">邮箱</div>
+        <div class="contact-value">2396965662@qq.com</div>
+      </div>
+      <div class="contact-card reveal">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 2C5.46 2 3 4.46 3 7.5c0 5.7 6.06 9.36 8.44 13.59a1 1 0 0 0 1.72 0C15.44 16.86 21.5 13.2 21.5 7.5 21.5 4.46 19.04 2 16 2"></path><circle cx="12" cy="7.5" r="2"></circle></svg>
+        </div>
+        <div class="contact-label">微信</div>
+        <div class="contact-value">fwj2396965662</div>
+      </div>
+    </div>
+    <div class="contact-cta reveal">
+      <a href="mailto:2396965662@qq.com?subject=合作咨询">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#03211b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+        发送合作邀请
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 页脚 -->
+<footer class="footer">
+  <div class="container">
+    <p class="footer-slogan">把生成式 AI 变成<b>可交付的商业视觉</b> · 把 AI 视频变成<b>可交付的叙事作品</b></p>
+    <p class="footer-copy">© 2026 冯文举 · super 守望 · AIGC VISUAL PORTFOLIO</p>
+  </div>
+</footer>
+
+<!-- 详情模态框 -->
+<div class="modal-mask" id="modalMask">
+  <div class="modal" id="modal">
+    <button class="modal-close" id="modalClose" aria-label="关闭">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+    <div class="modal-media" id="modalMedia"></div>
+    <div class="modal-body">
+      <div class="modal-head">
+        <span class="modal-cat" id="modalCat"></span>
+        <span class="modal-num" id="modalNum"></span>
+      </div>
+      <h2 id="modalTitle"></h2>
+      <p class="modal-spec" id="modalSpec"></p>
+      <div class="modal-points">
+        <div class="point">
+          <div class="point-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4M12 16h.01"></path></svg>
+            项目背景
+          </div>
+          <p id="pointBg"></p>
+        </div>
+        <div class="point">
+          <div class="point-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            我的职责
+          </div>
+          <p id="pointRole"></p>
+        </div>
+        <div class="point">
+          <div class="point-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+            工具链
+          </div>
+          <p id="pointTools"></p>
+        </div>
+        <div class="point">
+          <div class="point-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            核心成果
+          </div>
+          <p id="pointResult"></p>
+        </div>
+      </div>
+      <div class="modal-gallery-title" id="modalGalleryTitle"></div>
+      <div class="masonry" id="modalGallery"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ================= 项目数据 ================= */
+const PROJECTS = [
+  {
+    cat:"ecom", catName:"电商视觉设计",
+    title:"AURORA X1 Pro 降噪耳机",
+    spec:"电商详情页全案 · 9屏体系 + 15秒种草TVC · 深黑冷光科技美学",
+    cover:"images/p01_cover.jpg",
+    desc:"旗舰真无线降噪耳机电商全案，以「城市专属安静空间」情绪价值替代参数堆砌，40dB降噪转化为可感知的沉浸视觉。",
+    tags:["Amazon","详情页全案","TVC广告"],
+    bg:"锚定 25-35 岁城市通勤白领，用「城市专属安静空间」的情绪价值替代冰冷参数堆砌，将对标苹果的高端科技氛围落到电商视觉。",
+    role:"独立完成 9 屏详情页全案与 15 秒 TVC：用户痛点分析、广告脚本、视觉资产（人物/产品/场景）建立、图生视频与后期包装。",
+    tools:"GPT 产品识别报告 + Midjourney 人物场景资产 + Nano Banana 效果图 + Seedance/可灵 图生视频 + PS 精修 + 剪映包装。",
+    result:"9 屏电商详情页体系（痛点/拆解/场景/CTA）+ 科技结构爆炸图与微距细节 + 「痛点共鸣→降噪解决→沉浸体验→CTA购买」四段式转化 TVC，可直接用于品牌提案与投流。",
+    video:"videos/v01_aurora_tvc.mp4",
+    gallery:["images/p01_g01.jpg","images/p01_g02.jpg","images/p01_g03.jpg","images/p01_g04.jpg","images/p01_g05.jpg","images/p01_g06.jpg","images/p01_g07.jpg","images/p01_g08.jpg","images/p01_g09.jpg","images/p01_g10.jpg","images/p01_g11.jpg","images/p01_g12.jpg","images/p01_g13.jpg","images/p01_g14.jpg","images/p01_g15.jpg","images/p01_g16.jpg","images/p01_g17.jpg"]
+  },
+  {
+    cat:"ecom", catName:"电商视觉设计",
+    title:"PawFlow X1 智能饮水机",
+    spec:"Amazon 宠物电商视觉体系 · 10屏标准详情页 · 欧美极简家居风",
+    cover:"images/p02_cover.jpg",
+    desc:"面向欧美宠物家长的 Amazon 视觉全案，纯白浅木自然光烘托高级感，将 4 层过滤科技融入真实家庭陪伴场景。",
+    tags:["Amazon","宠物电商","详情页全案"],
+    bg:"面向欧美宠物家长，以「健康饮水」为核心痛点，为新兴宠物科技品牌快速建立专业信任感。",
+    role:"独立完成 10 屏标准 Amazon 详情页：从卖点提炼、痛点共鸣、技术拆解到竞品对比与情感闭环的全套设计。",
+    tools:"Midjourney 生活方式场景生成 + ComfyUI 产品一致性锁定 + PS 电商排版精修。",
+    result:"10 屏标准详情页（首屏/痛点/拆解/对比/参数）+ 竞品对比视觉 + 品牌故事与参数成交页，完成从引导认知到驱动下单的完整视觉闭环。",
+    gallery:["images/p02_g01.jpg","images/p02_g02.jpg","images/p02_g03.jpg","images/p02_g04.jpg","images/p02_g05.jpg","images/p02_g06.jpg","images/p02_g07.jpg","images/p02_g08.jpg","images/p02_g09.jpg","images/p02_g10.jpg","images/p02_g11.jpg","images/p02_g12.jpg","images/p02_g13.jpg","images/p02_g14.jpg"]
+  },
+  {
+    cat:"ip", catName:"IP形象全案设计",
+    title:"灯鸽鸽 IP 全案",
+    spec:"中山灯饰 × 白鸽文化 · 1套角色 + 3套延展 + 3套场景 + 5款文创",
+    cover:"images/p03_cover.jpg",
+    desc:"基于中山古镇「中国灯饰之都」的文化锚点，头顶发光钨丝灯泡的白鸽精灵，从角色设定到文创实物的完整 IP 商业化闭环。",
+    tags:["城市文旅IP","表情包","文创周边","IP动画"],
+    bg:"基于中山古镇「中国灯饰之都」产业背景，将石岐白鸽 + 古镇灯饰文化转化为年轻化、可延展的城市文旅 IP，建立情感连接。",
+    role:"从文化锚点到 IP 世界观、角色设定、视觉延展到 3D 实物化的全案设计，并制作 IP 动画短片。",
+    tools:"Midjourney 初稿 + GPT Image 精修排版 + Photoshop 合成延展 + 剪映动画包装。",
+    result:"完整角色设定（三视图/企划展板）+ 表情包/动作立绘/四格漫画 3 套延展 + 灯博会海报/社媒封面/灯具包装 3 套场景 + 小夜灯/帆布袋/贴纸/手机壳/毛绒玩具 5 款文创。",
+    video:"videos/v03_ip_dengege.mp4",
+    gallery:["images/p03_g01.jpg","images/p03_g02.jpg","images/p03_g03.jpg","images/p03_g04.jpg","images/p03_g05.jpg","images/p03_g06.jpg","images/p03_g07.jpg","images/p03_g08.jpg","images/p03_g09.jpg","images/p03_g10.jpg","images/p03_g11.jpg","images/p03_g12.jpg","images/p03_g13.jpg"]
+  },
+  {
+    cat:"ip", catName:"IP形象全案设计",
+    title:"菊小榄 IP 全案",
+    spec:"小榄菊花会 · 国家级非遗年轻化 · 新中式国潮视觉",
+    cover:"images/p04_cover.jpg",
+    desc:"将传统菊花会非遗节庆转译为年轻化潮流 IP：菊花花苞发髻 + 眉心金色菊花印记，岭南水乡纹样服饰体系。",
+    tags:["非遗IP","新中式","国潮","表情包"],
+    bg:"「小榄菊花会」需要年轻化载体，将传统菊花文化转化为吸引年轻受众的潮流生活 IP。",
+    role:"IP 世界观构建、角色视觉锁定、表情包与文创周边的全案设计。",
+    tools:"Midjourney 角色生成 + ComfyUI 风格统一与线稿精修 + PS 排版延展。",
+    result:"角色三视图与细节设定 + 6 款表情包与动态延展 + VIS 视觉系统与贴纸/帆布袋/明信片文创，可直接用于节庆营销。",
+    gallery:["images/p04_g01.jpg","images/p04_g02.jpg","images/p04_g03.jpg","images/p04_g04.jpg","images/p04_g05.jpg","images/p04_g06.jpg","images/p04_g07.jpg","images/p04_g08.jpg","images/p04_g09.jpg","images/p04_g10.jpg"]
+  },
+  {
+    cat:"video", catName:"AI视频设计",
+    title:"雀巢咖啡 · 丝滑重启 TVC",
+    spec:"5镜 · 50秒 · 9:16竖屏 · AI生成占比＞90%",
+    cover:"images/p05_cover.jpg",
+    desc:"聚焦职场人「午后壳」共鸣痛点，将咖啡的丝滑质感具象化为「桌面金色漩涡」时间回溯视觉开关，冷灰→暖金光影闭环。",
+    tags:["TVC广告","产品视频","竖屏"],
+    bg:"聚焦职场人「午后壳」的共鸣痛点，将咖啡的「丝滑」质感具象化为「桌面金色漩涡」，作为时间回溯与重启的视觉开关。",
+    role:"独立完成创意脚本、角色/场景/产品三套资产锚定、图生视频、调色与音效包装。",
+    tools:"Midjourney 前置锁定角色与产品外貌 + Seedance 图生视频 + PS 精修调色 + 剪映 BGM 包装。",
+    result:"5镜50秒 9:16 竖屏成片，液态溶解转场特效与产品落版，完成「冷灰→暖金→镜面新生」的光影闭环，规避换脸与变形风险。",
+    video:"videos/v05_nestle_tvc.mp4",
+    gallery:["images/p05_g01.jpg","images/p05_g02.jpg","images/p05_g03.jpg","images/p05_g04.jpg","images/p05_g05.jpg","images/p05_g06.jpg","images/p05_g07.jpg","images/p05_g08.jpg","images/p05_g09.jpg"]
+  },
+  {
+    cat:"video", catName:"AI视频设计",
+    title:"奕派 M8 汽车TVC",
+    spec:"113秒 · 10分镜 · 3位角色资产 · 电影级奇幻广告",
+    cover:"images/p06_cover.jpg",
+    desc:"女孩蜡笔创造世界 → 画桥回归家庭，隐喻「每一次守护，都是回家的路」。悬浮石海/冰火裂谷与杏白内饰的极致冷暖对比。",
+    tags:["汽车TVC","电影级","奇幻叙事"],
+    bg:"以「女孩用蜡笔创造世界」为奇幻起点构建家庭冒险叙事，最终通过画桥回归现实，隐喻「每一次守护，都是回家的路」。",
+    role:"完整导演链路：故事脚本、人物与车辆资产锚定、分镜调度、多段运镜图生视频、后期剪辑。",
+    tools:"Midjourney 角色/车辆/环境资产锁定 + Seedance 多段运镜图生视频 + 剪映节奏剪辑。",
+    result:"113 秒电影级成片，10 个分镜、3 位角色资产与环境重构，「蜡笔弧线开场 → 贯穿式尾灯弧光收尾」的视觉闭环与 6 段情绪递进节奏。",
+    video:"videos/v06_yipai_m8.mp4",
+    gallery:["images/p06_g01.jpg","images/p06_g02.jpg","images/p06_g03.jpg","images/p06_g04.jpg","images/p06_g05.jpg","images/p06_g06.jpg","images/p06_g07.jpg","images/p06_g08.jpg","images/p06_g09.jpg","images/p06_g10.jpg"]
+  },
+  {
+    cat:"video", catName:"AI视频设计",
+    title:"别人修仙，我修宗门",
+    spec:"3集 × 90s · 每集6镜×15s · 3D国漫仙侠 · 工业化流程",
+    cover:"images/p07_cover.jpg",
+    desc:"「第一个用现代管理思维修仙的 AI 短剧」——从赛道分析到多集连续生产的 7 环节工业化全链路，一套资产跑通全集。",
+    tags:["AI漫剧","3D国漫","工业化流程","系列短剧"],
+    bg:"穿越 + 修仙 + 宗门经营赛道，「第一个用现代管理思维修仙的 AI 短剧」差异化定位，验证 AI 短剧可复制的工业化生产。",
+    role:"7 环节全链路打通：赛道分析 → 角色设定 → 资产生成规范 → 分镜方案 → 视频生成 → 后期包装 → 多集管理。",
+    tools:"Midjourney / GPT Image 资产批量生成 + Seedance / 即梦 多集连续性锁定 + 剪映文字合成与配音 BGM。",
+    result:"3 集 × 90s 连续生产，角色三视图×6 + 场景资产×5 + 道具资产×3 的资产体系，任务资产归类表管理全量资产，沉淀可复用生产 SOP。",
+    video:"videos/v07_xiuxian_ep1.mp4",
+    gallery:["images/p07_g01.jpg","images/p07_g02.jpg","images/p07_g03.jpg","images/p07_g04.jpg","images/p07_g05.jpg","images/p07_g06.jpg","images/p07_g07.jpg","images/p07_g08.jpg","images/p07_g09.jpg","images/p07_g10.jpg","images/p07_g11.jpg"]
+  },
+  {
+    cat:"video", catName:"AI视频设计",
+    title:"DANA · 赛博朋克CG",
+    spec:"75秒 · 5段×15s · 36格分镜系统 · 游戏CG",
+    cover:"images/p08_cover.jpg",
+    desc:"光剑 + 斗篷的双重视觉语言：光剑负责攻击性，斗篷负责飘逸感，互为因果。暗巷伏击 → 天台 Boss 战的完整动作叙事。",
+    tags:["游戏CG","动作设计","赛博朋克"],
+    bg:"光剑+斗篷的双重视觉语言设计：光剑负责攻击性，斗篷负责飘逸感，互为因果——光剑挥动产生气流扬起斗篷。",
+    role:"角色身份卡锁定外观、每段 7-8 格精确动作节点设计、动作链生成与节奏剪辑。",
+    tools:"Midjourney 角色身份卡 + 分镜故事板预演 + Seedance 动作链图生视频 + 剪映节奏剪辑。",
+    result:"75 秒 5 段完整动作叙事：暗巷伏击→墙跑突围→天台 Boss 战→X 波绝杀，斗篷物理由身体动作驱动，雨水被光刃气化留下可见光迹。",
+    video:"videos/v08_dana_cg.mp4",
+    gallery:["images/p08_g01.jpg","images/p08_g02.jpg","images/p08_g03.jpg","images/p08_g04.jpg","images/p08_g05.jpg","images/p08_g06.jpg","images/p08_g07.jpg","images/p08_g08.jpg"]
+  },
+  {
+    cat:"video", catName:"AI视频设计",
+    title:"墨雨残殿 · 东方动作",
+    spec:"60秒 · 6镜×10秒 · 电影级写实 + 东方意境",
+    cover:"images/p09_cover.jpg",
+    desc:"夜雨残殿：水面镜面反射 + 月光光柱 + 雨幕三层视觉叠加。爽文式连斩节奏——冷峻入场到收刀离场的完整爽感曲线。",
+    tags:["动作短片","东方武侠","环境互动"],
+    bg:"爽文碾压式叙事——主角以一敌众从头强到尾；夜雨残殿场景用三层视觉叠加制造高反差冷暖对比。",
+    role:"双角色定妆、唐刀道具与雨夜大殿场景资产锁定、打斗动作链设计与音效节奏包装。",
+    tools:"Midjourney 角色/道具/场景资产锁定 + Seedance 打斗动作链生成 + 剪映音效与节奏包装。",
+    result:"60 秒 6 镜成片：冷峻入场→首杀立威→群围激战→连斩高潮→头目终战→收刀离场，踩水溅花与刀斩水面的环境互动细节。",
+    video:"videos/v09_moyu.mp4",
+    gallery:["images/p09_g01.jpg","images/p09_g02.jpg","images/p09_g03.jpg","images/p09_g04.jpg","images/p09_g05.jpg","images/p09_g06.jpg","images/p09_g07.jpg","images/p09_g08.jpg","images/p09_g09.jpg","images/p09_g10.jpg"]
+  },
+  {
+    cat:"video", catName:"AI视频设计",
+    title:"孤山 · 情绪短片",
+    spec:"110秒 · 11镜×10秒 · POV/观察者/上帝三视角切换",
+    cover:"images/p10_cover.jpg",
+    desc:"关于「翻越自己」的写实登山叙事：雪脊独行、冰洞断崖到峰顶云海。全程不露脸，靠装备、动作与护目镜倒影传递情绪。",
+    tags:["电影短片","情绪叙事","多视角"],
+    bg:"用写实影像讲述一个关于「翻越自己」的故事，从雪脊独行、冰洞断崖到峰顶云海的三幕情绪递进。",
+    role:"POV 带入疲惫与恐惧、观察者视角拉远孤独感、上帝视角完成释放的三线视角调度；不露脸降险策略设计。",
+    tools:"Midjourney 场景与角色资产锁定 + Seedance 图生视频 + 剪映调色与音效包装。",
+    result:"110 秒 11 镜成片，冰洞冷蓝压抑 → 翻越瞬间金色暖光炸开的光影转折，全程规避 AI 人脸崩坏风险。",
+    video:"videos/v10_gushan.mp4",
+    gallery:["images/p10_g01.jpg","images/p10_g02.jpg","images/p10_g03.jpg","images/p10_g04.jpg","images/p10_g05.jpg","images/p10_g06.jpg"]
+  },
+  {
+    cat:"video", catName:"AI视频设计",
+    title:"告别 · 视频反向工程",
+    spec:"99秒 · 4K 60fps · 第一人称POV情感短片复刻",
+    cover:"images/p11_cover.jpg",
+    desc:"不临摹画面，只复刻原片「从童年到老去」的情感内核。4 类手部资产锁定一致性，80% 情绪靠手部传递，极致规避人脸崩坏。",
+    tags:["视频复刻","POV","方法论","反向工程"],
+    bg:"不临摹画面，只复刻原片「从童年放手→朋友离开→婚姻崩塌→亲人离世」的成长与告别情感内核。",
+    role:"视频理解分析 → 剧情结构拆解 → 人物分析 → 手部资产库 → 分镜复刻 → 成片验证的完整方法论。",
+    tools:"原片逐镜拆解 + GPT Image 手部/面部资产生成 + Seedance POV 图生视频 + 剪映成片验证。",
+    result:"99 秒 4K POV 成片：4 类手部资产（女性/儿童/老人/男性）+ 面部资产锁定，全片仅 1 次露脸，实现极高真实感复刻。",
+    video:"videos/v11_farewell.mp4",
+    gallery:["images/p11_g01.jpg","images/p11_g02.jpg","images/p11_g03.jpg","images/p11_g04.jpg","images/p11_g05.jpg","images/p11_g06.jpg","images/p11_g07.jpg","images/p11_g08.jpg","images/p11_g09.jpg"]
+  },
+  {
+    cat:"other", catName:"其它设计",
+    title:"ComfyUI 自动化工作流",
+    spec:"5套标准化节点流水线 · 一套节点反复跑通 · 边际成本趋零",
+    cover:"images/p12_cover.jpg",
+    desc:"产品融图 / 一键换装 / 海报排版 / 线稿转3D / 线稿上色——把重复劳动交给节点，覆盖电商与 IP 双场景的自动化生产。",
+    tags:["ComfyUI","自动化","工作流","Flux.1"],
+    bg:"把重复劳动交给节点：一套节点反复跑通，让视觉生产的边际成本趋近于零。",
+    role:"工作流架构设计、节点编排、参数标准化与批量出图验证。",
+    tools:"ComfyUI + Flux.1 文生图 / Qwen Image Edit / Kontext 系列模型。",
+    result:"5 套标准化工作流：产品融景（白底图+环境自动融合）、一键换装（保服装细节）、海报排版（品牌字体精准还原）、线稿转3D（多视角一致）、线稿上色（角色识别度100%保留）。",
+    gallery:["images/p12_g01.jpg","images/p12_g02.jpg","images/p12_g03.jpg","images/p12_g04.jpg","images/p12_g05.jpg"]
+  }
+];
+
+/* ================= 渲染作品卡片 ================= */
+const workGrid = document.getElementById('workGrid');
+PROJECTS.forEach((p,i)=>{
+  const card = document.createElement('div');
+  card.className = 'work-card';
+  card.dataset.cat = p.cat;
+  card.innerHTML = `
+    <div class="work-thumb">
+      <img src="${p.cover}" alt="${p.title}" loading="lazy">
+      <span class="work-cat-badge">${p.catName}</span>
+      ${p.video ? '<span class="work-play"></span>' : ''}
+    </div>
+    <div class="work-info">
+      <div class="work-meta">
+        <span class="work-num">${String(i+1).padStart(2,'0')}</span>
+        <h3>${p.title}</h3>
+      </div>
+      <p>${p.desc}</p>
+      <div class="work-tags">${p.tags.map(t=>`<span>${t}</span>`).join('')}</div>
+    </div>`;
+  card.addEventListener('click',()=>openModal(i));
+  workGrid.appendChild(card);
+});
+
+/* ================= 筛选 ================= */
+document.getElementById('filterBar').addEventListener('click',e=>{
+  const btn = e.target.closest('.filter-btn');
+  if(!btn) return;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const f = btn.dataset.filter;
+  let delay = 0;
+  document.querySelectorAll('.work-card').forEach(card=>{
+    const show = f==='all' || card.dataset.cat===f;
+    card.classList.remove('enter');
+    if(show){
+      card.classList.remove('hide');
+      void card.offsetWidth;
+      card.style.animationDelay = (delay*0.06)+'s';
+      card.classList.add('enter');
+      delay++;
+    }else{
+      card.classList.add('hide');
+    }
+  });
+});
+
+/* ================= 模态框 ================= */
+const mask = document.getElementById('modalMask');
+function openModal(i){
+  const p = PROJECTS[i];
+  document.getElementById('modalCat').textContent = p.catName;
+  document.getElementById('modalNum').textContent = 'PROJECT ' + String(i+1).padStart(2,'0');
+  document.getElementById('modalTitle').textContent = p.title;
+  document.getElementById('modalSpec').textContent = p.spec;
+  document.getElementById('pointBg').textContent = p.bg;
+  document.getElementById('pointRole').textContent = p.role;
+  document.getElementById('pointTools').textContent = p.tools;
+  document.getElementById('pointResult').textContent = p.result;
+  const media = document.getElementById('modalMedia');
+  if(p.video){
+    media.innerHTML = `<video controls preload="metadata" src="${p.video}" poster="${p.cover}"></video><span class="video-tip">完整成片 · 本地视频在线播放</span>`;
+  }else{
+    media.innerHTML = `<img src="${p.cover}" alt="${p.title}">`;
+  }
+  document.getElementById('modalGalleryTitle').textContent = `Visuals · 项目视觉 · ${p.gallery.length}P`;
+  document.getElementById('modalGallery').innerHTML = p.gallery.map(g=>`<img src="${g}" alt="${p.title} 视觉" loading="lazy">`).join('');
+  mask.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(){
+  mask.classList.remove('open');
+  document.body.style.overflow = '';
+  const v = document.querySelector('#modalMedia video');
+  if(v) v.pause();
+}
+document.getElementById('modalClose').addEventListener('click',closeModal);
+mask.addEventListener('click',e=>{ if(e.target===mask) closeModal(); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
+
+/* ================= 滚动渐显 ================= */
+const revealObs = new IntersectionObserver(entries=>{
+  entries.forEach(en=>{
+    if(en.isIntersecting){
+      en.target.classList.add('in');
+      revealObs.unobserve(en.target);
+    }
+  });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
+
+/* ================= 技能条动画 ================= */
+const skillObs = new IntersectionObserver(entries=>{
+  entries.forEach(en=>{
+    if(en.isIntersecting){
+      const fill = en.target.querySelector('.skill-fill');
+      fill.style.width = en.target.dataset.pct + '%';
+      skillObs.unobserve(en.target);
+    }
+  });
+},{threshold:.4});
+document.querySelectorAll('.skill-item').forEach(el=>skillObs.observe(el));
+
+/* ================= 导航 ================= */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll',()=>{
+  navbar.classList.toggle('scrolled', window.scrollY > 40);
+},{passive:true});
+
+const menuToggle = document.getElementById('menuToggle');
+const navMenu = document.getElementById('navMenu');
+menuToggle.addEventListener('click',()=>navMenu.classList.toggle('open'));
+navMenu.querySelectorAll('a,button').forEach(el=>el.addEventListener('click',()=>navMenu.classList.remove('open')));
+
+function scrollToId(id){
+  const el = document.getElementById(id);
+  if(el) window.scrollTo({top: el.offsetTop - (id==='home'?0:56), behavior:'smooth'});
+}
+
+/* 导航高亮 */
+const sections = ['home','about','portfolio','skills','contact'];
+const navLinks = document.querySelectorAll('.nav-menu a');
+const navObs = new IntersectionObserver(entries=>{
+  entries.forEach(en=>{
+    if(en.isIntersecting){
+      navLinks.forEach(a=>a.classList.toggle('active', a.getAttribute('href')==='#'+en.target.id));
+    }
+  });
+},{rootMargin:'-40% 0px -55% 0px'});
+sections.forEach(id=>{ const el=document.getElementById(id); if(el) navObs.observe(el); });
+
+/* ================= 星空背景 ================= */
+(function(){
+  const canvas = document.getElementById('starfield');
+  const ctx = canvas.getContext('2d');
+  let stars = [], w, h;
+  function resize(){
+    w = canvas.width = canvas.offsetWidth * devicePixelRatio;
+    h = canvas.height = canvas.offsetHeight * devicePixelRatio;
+    const count = Math.min(260, Math.floor(w*h/9000));
+    stars = Array.from({length:count},()=>({
+      x: Math.random()*w,
+      y: Math.random()*h,
+      r: (Math.random()*1.4+.3)*devicePixelRatio,
+      o: Math.random()*.7+.2,
+      tw: Math.random()*.02+.005,
+      ph: Math.random()*Math.PI*2,
+      vy: (Math.random()*.08+.02)*devicePixelRatio,
+      teal: Math.random() > .35
+    }));
+  }
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    stars.forEach(s=>{
+      s.ph += s.tw;
+      const a = s.o * (0.55 + 0.45*Math.sin(s.ph));
+      s.y -= s.vy;
+      if(s.y < -4){ s.y = h+4; s.x = Math.random()*w; }
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+      ctx.fillStyle = s.teal ? `rgba(120,235,210,${a})` : `rgba(235,245,240,${a})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  resize();
+  window.addEventListener('resize',resize);
+  draw();
+})();
+</script>
+
+</body></html>
